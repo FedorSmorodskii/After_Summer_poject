@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "microshop-1"
+version = "0.1.0"
+description = ""
+authors = ["My Name <fedorsmorodskii@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.0"
+uvicorn = {extras = ["standard"], version = "^0.30.6"}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
