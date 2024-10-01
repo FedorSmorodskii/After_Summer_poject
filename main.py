@@ -1,22 +1,24 @@
 from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
 import uvicorn
 
-from core.models import Base, db_helper
+from core.models import Base, db_helper  # Все что связано с SQL
+
 from items_views import router as item_router
 from users.views import router as users_router
 
 
-@asynccontextmanager
+@asynccontextmanager  # Все что нужно сделать перед запуском программы
 async def lifespan(app: FastAPI):
-    async with db_helper.engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    async with db_helper.engine.begin() as conn:  # Закроется после выполнения задачи | Запускаем "Движок"
+        await conn.run_sync(Base.metadata.create_all)  # Пропускаем даленьнейшую программу к выполнению | Создаем таблицу SQL | create_all Не даст создать дубль таблицы
 
-    yield
+    yield  # Все что нужно сделать перед завершением работы программы
 
 
-app = FastAPI(lifespan=lifespan)
+# Список наших приложений
+app = FastAPI(lifespan=lifespan)  # Перед запуском основного приложения (main),
+# он проверяет нет ли чего либо, что необходимо сделать перед запуском программы(lifespan)
 app.include_router(item_router)
 app.include_router(users_router)
 
@@ -29,8 +31,6 @@ async def root():
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
-
-
 
 
 if __name__ == "__main__":

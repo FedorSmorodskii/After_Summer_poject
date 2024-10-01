@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped
 
-from .base import Base
+from .base import Base  # Информация о названии таблицы и параметров id
 
 
 class Product(Base):
