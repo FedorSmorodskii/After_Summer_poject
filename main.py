@@ -2,8 +2,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 import uvicorn
 
+from core.config import settings
 from core.models import Base, db_helper  # Все что связано с SQL
-
+from api_v1 import router as router_v1
 from items_views import router as item_router
 from users.views import router as users_router
 
@@ -19,6 +20,7 @@ async def lifespan(app: FastAPI):
 # Список наших приложений
 app = FastAPI(lifespan=lifespan)  # Перед запуском основного приложения (main),
 # он проверяет нет ли чего либо, что необходимо сделать перед запуском программы(lifespan)
+app.include_router(router=router_v1, prefix=settings.api_v1_prefix)
 app.include_router(item_router)
 app.include_router(users_router)
 
