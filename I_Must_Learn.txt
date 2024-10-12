@@ -1,0 +1,2 @@
+1) scoped_session_dependency и session_dependency
+2) Depends()

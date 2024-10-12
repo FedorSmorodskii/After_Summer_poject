@@ -20,7 +20,7 @@ async def lifespan(app: FastAPI):
 # Список наших приложений
 app = FastAPI(lifespan=lifespan)  # Перед запуском основного приложения (main),
 # он проверяет нет ли чего либо, что необходимо сделать перед запуском программы(lifespan)
-app.include_router(router=router_v1, prefix=settings.api_v1_prefix)
+app.include_router(router=router_v1, prefix=settings.api_v1_prefix)  # /api/v1/products/
 app.include_router(item_router)
 app.include_router(users_router)
 
