@@ -1,2 +1,4 @@
 1) scoped_session_dependency и session_dependency
 2) Depends()
+3) if TYPE_CHECKING:
+    from .post import Post
