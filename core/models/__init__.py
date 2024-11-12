@@ -6,6 +6,7 @@ __all__ = (
     "Product",
     "User",
     "Post",
+    "Profile",
     # Add more models here..."
 )
 
@@ -14,3 +15,4 @@ from .db_helper import DatabaseHelper, db_helper
 from .product import Product
 from .user import User
 from .post import Post
+from .profile import Profile
