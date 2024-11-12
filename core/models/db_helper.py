@@ -13,7 +13,7 @@ class DatabaseHelper:  # Управление ассинхронностью б�
     def __init__(self, url: str, echo: bool = False):
         self.engine = create_async_engine(  # Обязательные переменные для функции ниже
             url=url,
-            echo=echo,
+            echo=False,  # Включает логирование запросов
         )
         self.session_factory = async_sessionmaker(  # Создает условия для работы ассинхронности
             bind=self.engine,
@@ -40,4 +40,7 @@ class DatabaseHelper:  # Управление ассинхронностью б�
         await session.close()
 
 
-db_helper = DatabaseHelper(url=settings.db_url, echo=settings.db_echo)  # Передаем из настроек путь и разрешение отладки
+db_helper = DatabaseHelper(
+    url=settings.db.url,
+    echo=settings.db.echo
+)  # Передаем из настроек путь и разрешение отладки

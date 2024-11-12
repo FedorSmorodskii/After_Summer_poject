@@ -24,3 +24,9 @@ class User(Base):
 
     posts : Mapped[list["Post"]] = relationship(back_populates="user")  # Это означает, что один пользователь может иметь много постов
     profile : Mapped["Profile"] = relationship(back_populates="user")  # Это означает, что у каждого пользователя есть один профиль.
+
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__}(id={self.id}username={self.username!r})"
+
+    def __repr__(self) -> str:
+        return str(self)
