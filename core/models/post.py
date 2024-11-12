@@ -21,7 +21,7 @@ class Post(UserRelationMixin, Base):
     )
 
     def __str__(self) -> str:
-        return f"{self.__class__.__name__}(id={self.id}username={self.title!r})"
+        return f"{self.__class__.__name__}(id={self.id}username={self.title!r}, user_id={self.user_id})"
 
     def __repr__(self) -> str:
         return str(self)
